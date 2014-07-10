@@ -1,4 +1,0 @@
-cdeploy
-=======
-
-Corsane frontend
