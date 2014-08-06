@@ -1,1 +1,52 @@
-<section ng-controller="PlaylistinfoCtrl"><h2>{{thisList.value.name}}</h2></section>
+<div ng-controller="PlaylistinfoCtrl">
+	<div class="panel-group" id="accordion">
+	  <div class="panel panel-default" id="myPlaylists">
+	    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" id="myPlaylistHead" ng-click="open = !open">
+	      <p class="lead" id="panel-title" class="accordion-toggle">
+	          My Playlists
+	      	<span ng-show="open" id="caretDown" class="glyphicon glyphicon-chevron-down"></span>
+	      	<span ng-show="!open" id="caretUp" class="glyphicon glyphicon-chevron-up"></span>
+
+	      </p>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse in">
+	      <div class="panel-body">
+	    	<button class="btn btn-default" ng-click="createNewList()"><span class="glyphicon glyphicon-plus"></span> Create New List</button>
+	        <table class="table table-striped table-hover ">
+	            <thead>
+	            </thead>
+	            <tbody>
+	              <tr ng-repeat="list in lists.value">
+	                <td data-toggle="collapse" data-target="#collapseOne" ng-class="{ selectedElement: isActiveList(list.id)}" ng-click="passPlaylist(list)">
+	              
+	                  <form ng-submit="setNewName(thisList.value, newName)" ng-show="isEditable == thisList.value.id || isEditable == thisList.value.section_id" class="edit">
+	                    <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="{{thisList.value.name}}" ng-model="newName" id="newName">
+	                  </form> 
+	                  <div class="listName"style="float:left" ng-hide="isEditable == thisList.value.id || isEditable == thisList.value.section_id">
+	                    <p>{{list.name}}</p>
+	                  </div>
+
+	                
+	                </td>
+	                <td ng-class="{ selectedElement: isActiveList(list.id)}" style="width: 15px;">
+	                  <div ng-class="open ? 'btn-group open' : 'btn-group'" style="float: right;" ng-click="open = !open;$event.stopPropagation()">
+	                    <span data-toggle="dropdown" class="glyphicon glyphicon-cog"></span>
+	                    <ul class="dropdown-menu" id="pStyle" role="menu" style="right: 0; left: auto;">
+	                      <li ng-click="editName(list);$event.stopPropagation();open = !open"><p>Edit name</p></li>
+	                      <li ng-click="deleteAlert(list, $index);$event.stopPropagation();open = !open"><p>Remove list</p></li>
+	                      <li ng-click="addSection(list);$event.stopPropagation();open = !open"><p>Add new sub list</p></li>
+	                    </ul>
+	                  </div>
+	                </td>
+
+	              </tr>
+
+	            </tbody>
+	          </table>
+	      </div>
+	    </div>
+	  </div>
+
+	</div>
+
+</div>

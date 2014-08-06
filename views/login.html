@@ -1,0 +1,26 @@
+<div id="background">
+<div id="loginHeader">
+	<p class="leadText" style="color: orange; display:inline;padding:30px;"><img style="width: 40px;" src="images/0717915e.Logo.png">Corsane</p>
+
+	<p class="leadText" ng-click="isCollapsed = !isCollapsed" style="color: orange; display:inline; float:right; padding:30px;margin-bottom:0px;cursor:pointer;">log in</p>
+	<p class="leadText" ng-click="isCollapsed = !isCollapsed" style="color: orange; display:inline; float:right; padding:30px;margin-bottom:0px;cursor:pointer;">sign up</p>
+
+</div>
+<div collapse="isCollapsed" >
+
+	<div style="background-color: grey;height:300px;" class="col-md-3"></div>
+	<div style="background-color: grey;" class="col-md-6">
+
+		<div style="height:300px;"> 
+			<p style="color: white; padding-top: 30px;">Login to Corsane</p>
+			<form ng-submit="login()">
+				<input class="form-control" type="text" ng-model="email" placeholder="Email" >
+				<input class="form-control" style="margin-top: 20px;margin-bottom: 20px;" type="text" ng-model="password" placeholder="Password">
+				<button class="btn btn-success" type="submit">Login</button>
+			</form>
+		</div>
+	</div>
+	<div style="background-color: grey;height:300px;" class="col-md-3"></div>
+</div>
+
+</div>
