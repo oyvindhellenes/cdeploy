@@ -1,10 +1,10 @@
 <div ng-controller="ResourceCtrl">
-	<div class="jumbotron" id="resourceInfoBox" ng-show="!element.section_id">
+	<div class="jumbotron" id="{{element.level > 1 ? 'sectionInfoBox' : 'resourceInfoBox'}}" ng-show="!element.section_id">
 		<div class="something">
 			<p class="leadResourceText">
 			{{element.name}} 
 			</p>
-			<h4>By: Øyvind Hellenes | <a href="{{element.url}}" class="orange" target="_blank">{{element.url}}</a></h4>
+<!-- 			<h4>By: Øyvind Hellenes | <a href="{{element.url}}" class="orange" target="_blank">{{element.url}}</a></h4> -->
 			<div ng-include src="'views/resource.html'"></div>
 			<div class="infoBox">
 			<p id="toolbox" style="margin-top: 10px;">Got it?</p><input type="checkbox" ng-model="boxChecked" ng-click="boxClicked()" id="checkbox-9-1" /><label style="margin-top: 10px;" for="checkbox-9-1"></label>
@@ -66,8 +66,15 @@
 		</div>
 	
 	</div>
-	<div class="jumbotron" id="resourceInfoBox" ng-show="element.section_id">
+	<div class="jumbotron" id="sectionInfoBox" ng-show="element.section_id">
 		<h2 style="text-align: center;">{{element.name}}</h2>
+		<hr>
+		<input type="text" class="form-control" ng-show="editNote" placeholder="Describe this section" ng-model="note" ng-keyup="onEnter($event.keyCode)">
+        <blockquote ng-hide="editNote">
+        	<p>{{note}}
+        	<span class="glyphicon glyphicon-edit" id="sidebarIcons" ng-click="editNote = !editNote"></span></p>
+        </blockquote>
+
 	</div>
 
 

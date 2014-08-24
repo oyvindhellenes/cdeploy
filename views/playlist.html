@@ -10,9 +10,9 @@
           <table class="table table-striped table-hover " id="listTable" ng-keyup="keyPress($event.keyCode, $index)" tabindex="1">
             <thead>
             </thead>
-            <tbody ui-sortable ng-model="listElements.elements">
+            <tbody ui-sortable ng-model="listElements.elements" id="listTableBody">
               <tr ng-repeat="resource in listElements.elements">
-                <td ng-class="isSelected(resource)" ng-click="showResource(resource, $index)">
+                <td ng-class="isSelected(resource)" ng-click="showResource(resource, $index)" style="width:170px;">
                     <form ng-submit="setNewName(resource, newName)" ng-show="isEditable == resource.section_id" class="edit">
                       <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="{{resource.name}}" ng-model="newName" id="newName">
                     </form> 
@@ -40,7 +40,6 @@
         </li>
       </ul>
       
-
   </div>
  
 

@@ -1,4 +1,5 @@
   <div class="col-md-3">
+  <!-- This is the left where you will select which playlist to submit to -->
 <!--     <div id="topPadding"></div>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default" id="myPlaylists">
@@ -36,10 +37,10 @@
       <div ng-show="toPlaylist.value">
         <h4>Add to playlist: {{thisList.value.name}}</h4>
       </div>
-      <form ng-submit="submit()">
+      <form >
 		<ul class="list-inline">
 			<li id="cell">
-				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected(1), inactive:!tabIsSelected(1)}" ng-click="setTab(1)">
+				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('url'), inactive:!tabIsSelected('url')}" ng-click="setTab('url')">
 					<p id="white">Share a link</p>
 				</div>
 			</li>
@@ -49,7 +50,7 @@
 				</div>
 			</li>
 			<li id="cell">
-				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected(2), inactive:!tabIsSelected(2)}" ng-click="setTab(2)">
+				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('text'), inactive:!tabIsSelected('text')}" ng-click="setTab('text')">
 					<p id="white">Use your own words</p>
 				</div>
 			</li>
@@ -59,7 +60,7 @@
 				</div>
 			</li>
 			<li id="cell">
-				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected(3), inactive:!tabIsSelected(3)}" ng-click="setTab(3)">
+				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('file'), inactive:!tabIsSelected('file')}" ng-click="setTab('file')">
 					<p id="white">Upload a file</p>
 				</div>
 			</li>
@@ -68,27 +69,32 @@
 	  <div id="inputField">
         <input type="text" class="form-control" placeholder="Give it a title" ng-model="resource.name">
         </div>
-      <div ng-show="tabIsSelected(1)" id="inputField">
+      <div ng-show="tabIsSelected('url')" id="inputField">
         <input type="text" class="form-control" placeholder="URL" ng-model="resource.url">
       </div>
-	  <div ng-show="tabIsSelected(2)">
-      <summernote height="200" config="options" ng-model="resource.text"></summernote>
+	  <div ng-show="tabIsSelected('text')">
+      <summernote height="200"  ng-model="resource.text"></summernote>
 	  </div>
-	  <div ng-show="tabIsSelected(1) || tabIsSelected(3)">
-        <p>What are you submitting?</p>
-        <div class="btn-group btn-group-justified">
-          <label class="btn btn-primary"  ng-model="resource.type" btn-radio="'video'"><span class="glyphicon glyphicon-film" id="video"></span> video</label>
-          <label class="btn btn-primary" ng-model="resource.type" btn-radio="'more'"><span class="glyphicon glyphicon-record" id="more"></span> other</label>
-        </div>
-		</div>
+    <div ng-show="tabIsSelected('file')">
+      <form ng-submit="submitFile()">
+        <input type="file" class="form-control" cs-upload="resource.file" >
+        <button type="submit">Submit file</button>
+      </form>
+  
+    </div>
+
         <div id="submitBtn">
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
 
         </div>
 
       </form>
-
-    </div>
+      <!-- Just testing file uploading -->
+<!--       <button class="btn default" ng-click="showPic()">Show picture</button>
+      <div ng-show="picture">
+        <img src="http://localhost:8888/Corsane/web/app_dev.php/api/file/filedownload?fileId=1">
+        <iframe class="iframe" width="500" height="325"  src="http://localhost:8888/Corsane/web/app_dev.php/api/file/filedownload?fileId=4" frameborder="0" allowfullscreen></iframe>
+    </div> -->
   </div>
   <div class="col-md-1"></div>
 

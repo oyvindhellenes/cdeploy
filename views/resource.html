@@ -1,4 +1,7 @@
     <div ng-show="element.url" id="resourceFrame">      
-      <iframe class="iframe" width="500" height="325"  src="{{element.url}}" frameborder="0" allowfullscreen></iframe>
+      <a href="{{element.url}}" ng-show="!element.text" class="embedly-card">{{element.name}}</a>
+      <div id="text-content" ng-show="element.text">
+        <div ng-bind-html="element.text.text"></div>
+      </div>
     </div>
       

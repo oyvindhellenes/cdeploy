@@ -1,4 +1,4 @@
-<div ng-controller="PlaylistinfoCtrl">
+<div >
 	<div class="panel-group" id="accordion">
 	  <div class="panel panel-default" id="myPlaylists">
 	    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" id="myPlaylistHead" ng-click="open = !open">
@@ -17,7 +17,7 @@
 	            </thead>
 	            <tbody>
 	              <tr ng-repeat="list in lists.value">
-	                <td data-toggle="collapse" data-target="#collapseOne" ng-class="{ selectedElement: isActiveList(list.id)}" ng-click="passPlaylist(list)">
+	                <td  ng-class="{ selectedElement: isActiveList(list.id)}" ng-click="passPlaylist(list)">
 	              
 	                  <form ng-submit="setNewName(thisList.value, newName)" ng-show="isEditable == thisList.value.id || isEditable == thisList.value.section_id" class="edit">
 	                    <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="{{thisList.value.name}}" ng-model="newName" id="newName">
@@ -45,6 +45,32 @@
 	          </table>
 	      </div>
 	    </div>
+<!-- 	    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" id="myPlaylistHead" ng-click="open = !open">
+	      <p class="lead" id="panel-title" class="accordion-toggle">
+	          My Topics
+	      	<span ng-show="open" id="caretDown" class="glyphicon glyphicon-chevron-down"></span>
+	      	<span ng-show="!open" id="caretUp" class="glyphicon glyphicon-chevron-up"></span>
+
+	      </p>
+	    </div>
+	    <div id="collapseTwo" class="panel-collapse collapse in">
+	      <div class="panel-body">
+	    	<button class="btn btn-default" ng-click="createNewList()"><span class="glyphicon glyphicon-plus"></span> Create New Topic</button>
+	        <table class="table table-striped table-hover ">
+	            <thead>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td data-toggle="collapse" data-target="#collapseTwo" ng-class="{ selectedElement: isActiveList(list.id)}" ng-click="passPlaylist(list)">
+	                	<p>*Topics*</p>
+	                </td>
+
+	              </tr>
+
+	            </tbody>
+	          </table>
+	      </div>
+	    </div> -->
 	  </div>
 
 	</div>
