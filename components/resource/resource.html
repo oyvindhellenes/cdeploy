@@ -1,0 +1,7 @@
+    <div ng-show="element.url" id="resourceFrame">      
+      <a href="{{element.url}}" ng-show="!element.text" class="embedly-card">{{element.name}}</a>
+      <div id="text-content" ng-show="element.text">
+        <div ng-bind-html="element.text.text"></div>
+      </div>
+    </div>
+      
