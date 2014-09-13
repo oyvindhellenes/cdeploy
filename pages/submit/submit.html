@@ -1,4 +1,4 @@
-  <div class="col-md-3">
+  <div class="col-xs-3">
   <!-- This is the left where you will select which playlist to submit to -->
 <!--     <div id="topPadding"></div>
     <div class="panel-group" id="accordion">
@@ -30,33 +30,23 @@
 
     </div> -->
   </div>
-  <div class="col-md-7">
+  <div class="col-xs-6">
     <div id="topPadding"></div>
     <div class="jumbotron" id="resourceInfoBox" ng-controller="SubmitCtrl">
       <p class="leadText">Share something useful</p>
       <div ng-show="toPlaylist.value">
         <h4>Add to playlist: {{thisList.value.name}}</h4>
       </div>
-      <form >
-		<ul class="list-inline">
+      <form style="vertical-align: middle;">
+		<ul>
 			<li id="cell">
 				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('url'), inactive:!tabIsSelected('url')}" ng-click="setTab('url')">
 					<p id="white">Share a link</p>
 				</div>
 			</li>
-			<li id="or">
-				<div>
-					<p>or</p>
-				</div>
-			</li>
 			<li id="cell">
 				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('text'), inactive:!tabIsSelected('text')}" ng-click="setTab('text')">
 					<p id="white">Use your own words</p>
-				</div>
-			</li>
-			<li id="or">
-				<div>
-					<p>or</p>
 				</div>
 			</li>
 			<li id="cell">
@@ -96,6 +86,6 @@
         <iframe class="iframe" width="500" height="325"  src="http://localhost:8888/Corsane/web/app_dev.php/api/file/filedownload?fileId=4" frameborder="0" allowfullscreen></iframe>
     </div> -->
   </div>
-  <div class="col-md-1"></div>
+  <div class="col-xs-3"></div>
 
   	
