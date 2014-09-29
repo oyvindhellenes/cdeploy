@@ -1,9 +1,13 @@
 <div>
 	<div class="jumbotron" id="{{element.level > 1 ? 'sectionInfoBox' : 'resourceInfoBox'}}" ng-show="!element.section_id">
 		<div class="something">
-			<p class="leadResourceText">
-			{{element.name}} 
-			</p>
+			<div class="resourceTop">
+				<p class="leadResourceText">
+				{{element.name}} 
+				</p>
+				<span class="glyphicon glyphicon-remove" id="removeTop" ng-click="removeResource(element, $index, listElements.elements)"></span>
+			</div>
+			<hr>
 <!-- 			<h4>By: Øyvind Hellenes | <a href="{{element.url}}" class="orange" target="_blank">{{element.url}}</a></h4> -->
 			<div ng-include src="'components/resource/resource.html'"></div>
 			<div class="infoBox">
@@ -66,14 +70,21 @@
 		</div>
 	
 	</div>
-	<div class="jumbotron" id="sectionInfoBox" ng-show="element.section_id">
-		<h2 style="text-align: center;">{{element.name}}</h2>
-		<hr>
-		<input type="text" class="form-control" ng-show="editNote" placeholder="Describe this section" ng-model="note" ng-keyup="onEnter($event.keyCode)">
+	<div  ng-show="element.section_id" class="jumbotron" id="sectionBox">
+		<h1 class="leadResourceText">{{element.name}}</h1>
+		<div ng-class="open ? 'btn-group open' : 'btn-group'" id="removeTop" ng-click="open = !open;$event.stopPropagation()">
+		  <span data-toggle="dropdown" class="glyphicon glyphicon-cog"></span>
+		  <ul class="dropdown-menu" id="pStyle" role="menu">
+		    <li ng-click="editName(element);$event.stopPropagation();open = !open"><p>Edit name</p></li>
+		    <li ng-click="deleteAlert(element, $index);$event.stopPropagation();open = !open"><p>Remove list</p></li>
+		    <li ng-click="addSection(element);$event.stopPropagation();open = !open"><p>Add new sub list</p></li>
+		  </ul>
+		</div>
+<!-- 		<input type="text" class="form-control" ng-show="editNote" placeholder="Describe this section" ng-model="note" ng-keyup="onEnter($event.keyCode)">
         <blockquote ng-hide="editNote">
         	<p>{{note}}
         	<span class="glyphicon glyphicon-edit" id="sidebarIcons" ng-click="editNote = !editNote"></span></p>
-        </blockquote>
+        </blockquote> -->
 
 	</div>
 
