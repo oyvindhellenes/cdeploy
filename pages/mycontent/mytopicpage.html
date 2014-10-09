@@ -1,0 +1,46 @@
+<div class="playlistbar" ng-controller="MyContentCtrl" > 
+
+  <div class="col-xs-3">
+    <div id="rightBar" ng-show="shortPath == '/playlist'">
+        <myplaylists></myplaylists>
+    </div>
+    <div id="rightBar" ng-show="shortPath == '/topic'">
+        <mytopics></mytopics>    
+    </div>
+    
+  </div>
+  <div class="col-xs-6">
+    <div id="topPadding">
+      <div ng-show="!showSubmit.value">
+
+        <div class="filterBar" ng-show="shortPath == '/topic'">
+
+            <div class="btn-group btn-group-justified">
+              <label class="btn btn-primary" ng-model="search.type" btn-radio=""><span class="glyphicon glyphicon-asterisk" id="all"></span> All</label>
+              <label class="btn btn-primary" ng-model="search.type" btn-radio="'video'"><span class="glyphicon glyphicon-film" id="video"></span> Video</label>
+              <label class="btn btn-primary" ng-model="search.type" btn-radio="'text'"><span class="glyphicon glyphicon-pencil" id="text"></span> Text</label>
+              <label class="btn btn-primary" ng-model="search.type" btn-radio="'url'"><span class="glyphicon glyphicon-link" id="link"></span> Link</label>
+              <label class="btn btn-primary" ng-model="search.type" btn-radio="'list'"><span class="glyphicon glyphicon-list" id="list"></span> List</label>
+              <label class="btn btn-primary" ng-model="search.type" btn-radio="'more'"><span class="glyphicon glyphicon-record" id="more"></span> More</label>
+            </div>
+        </div>
+        <addresource></addresource>
+      </div>
+    </div>
+    <div ng-show="showSubmit.value">
+      <submit></submit>
+    </div>
+    <hr>
+    <div>
+      <div ng-repeat="element in topicElements" class="elementRepeater">
+        <resource element="element" id="element{{$index}}" class="resource"><resource>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3">
+    <div id="topPadding" ng-show="shortPath == '/topic'">
+    <topicbar></topicbar>
+    </div>
+  </div>
+
+</div>

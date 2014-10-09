@@ -5,10 +5,10 @@
 				<p class="leadResourceText">
 				{{element.name}} 
 				</p>
-				<span class="glyphicon glyphicon-remove" id="removeTop" ng-click="removeResource(element, $index, listElements.elements)"></span>
+				<span class="glyphicon glyphicon-remove" ng-show="element.list_element_id" id="removeTop" ng-click="removeResource(element, $index, elements)"></span>
 			</div>
 			<hr>
-<!-- 			<h4>By: Øyvind Hellenes | <a href="{{element.url}}" class="orange" target="_blank">{{element.url}}</a></h4> -->
+
 			<div ng-include src="'components/resource/resource.html'"></div>
 			<div class="infoBox">
 			<p id="toolbox">Got it?</p><input type="checkbox" ng-model="boxChecked" ng-click="boxClicked()" id="checkbox-9-1" /><label  class="toolLabel" for="checkbox-9-1"></label>
@@ -71,12 +71,18 @@
 	
 	</div>
 	<div  ng-show="element.section_id" class="jumbotron" id="sectionBox">
-		<h1 class="leadResourceText">{{element.name}}</h1>
+
+		<form ng-submit="setNewName(element, newName)" ng-show="isEditable == element.section_id">
+		  <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="{{element.name}}" ng-model="newName">
+		</form> 
+		<div ng-hide="isEditable == element.section_id">
+		  <h1 class="leadResourceText">{{element.name}}</h1>
+		</div>		
 		<div ng-class="open ? 'btn-group open' : 'btn-group'" id="removeTop" ng-click="open = !open;$event.stopPropagation()">
-		  <span data-toggle="dropdown" class="glyphicon glyphicon-cog"></span>
-		  <ul class="dropdown-menu" id="pStyle" role="menu">
+		  <span data-toggle="dropdown" style="float:right;" class="glyphicon glyphicon-cog"></span>
+		  <ul class="dropdown-menu" role="menu">
 		    <li ng-click="editName(element);$event.stopPropagation();open = !open"><p>Edit name</p></li>
-		    <li ng-click="deleteAlert(element, $index);$event.stopPropagation();open = !open"><p>Remove list</p></li>
+		    <li ng-click="deleteAlert(element, $index, elements);$event.stopPropagation();open = !open"><p>Remove list</p></li>
 		    <li ng-click="addSection(element);$event.stopPropagation();open = !open"><p>Add new sub list</p></li>
 		  </ul>
 		</div>

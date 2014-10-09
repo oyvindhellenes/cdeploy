@@ -1,0 +1,53 @@
+<div class="jumbotron" id="resourceInfoBox" ng-controller="SubmitCtrl">
+      <div class="resourceTop">
+        <p class="leadText">Share something useful
+          <span class="glyphicon glyphicon-remove" id="removeTop" ng-click="closeSubmit()"></span>
+        </p>
+        
+      </div>
+      <div ng-show="toPlaylist.value">
+        <h4>Add to playlist: {{thisList.value.name}}</h4>
+      </div>
+      <form style="vertical-align: middle;">
+		<ul>
+			<li id="cell">
+				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('url'), inactive:!tabIsSelected('url')}" ng-click="setTab('url')">
+					<p id="white">Share a link</p>
+				</div>
+			</li>
+			<li id="cell">
+				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('text'), inactive:!tabIsSelected('text')}" ng-click="setTab('text')">
+					<p id="white">Use your own words</p>
+				</div>
+			</li>
+			<li id="cell">
+				<div class="btn btn-primary" id="categoryBtn" ng-class="{active:tabIsSelected('file'), inactive:!tabIsSelected('file')}" ng-click="setTab('file')">
+					<p id="white">Upload a file</p>
+				</div>
+			</li>
+		</ul>
+	
+	  <div id="inputField">
+        <input type="text" class="form-control" placeholder="Give it a title" ng-model="resource.name">
+        </div>
+      <div ng-show="tabIsSelected('url')" id="inputField">
+        <input type="text" class="form-control" placeholder="URL" ng-model="resource.url">
+      </div>
+	  <div ng-show="tabIsSelected('text')">
+      <summernote height="200"  ng-model="resource.text"></summernote>
+	  </div>
+    <div ng-show="tabIsSelected('file')">
+      <form ng-submit="submitFile()">
+        <input type="file" class="form-control" cs-upload="resource.file" >
+        <button type="submit">Submit file</button>
+      </form>
+  
+    </div>
+
+        <div id="submitBtn">
+          <button type="submit" ng-click="submit(elements)" class="btn btn-success">Submit</button>
+
+        </div>
+
+      </form>
+  </div>

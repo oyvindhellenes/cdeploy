@@ -1,0 +1,36 @@
+<div class="playlistbar" ng-controller="MyContentCtrl" > 
+
+  <div class="col-xs-3">
+    <div id="rightBar" ng-show="shortPath == '/playlist'">
+        <myplaylists></myplaylists>
+    </div>
+    <div id="rightBar" ng-show="shortPath == '/topic'">
+        <mytopics></mytopics>    
+    </div>
+    
+  </div>
+  <div class="col-xs-6">
+    <div id="topPadding">
+
+      <h1 class="playlistTitle">{{listElements.name}}</h1>
+      <hr>
+      <addresource ng-show="!showSubmit.value && listElements"></addresource>
+<!--       <addsection elements="listElements.elements"></addsection>
+ -->
+      <div ng-show="showSubmit.value">
+        <submit elements="listElements.elements"></submit>
+      </div>
+    </div>
+    <div ng-if="isPlaylist.value">
+      <div ng-repeat="element in listElements.elements" class="elementRepeater">
+        <resource element="element" elements="listElements.elements" id="element{{$index}}" class="resource"><resource>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3">
+    <div id="topPadding" ng-show="shortPath == '/topic'">
+    <topicbar></topicbar>
+    </div>
+  </div>
+
+</div>

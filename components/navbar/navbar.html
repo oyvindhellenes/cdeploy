@@ -6,14 +6,24 @@
             <li><img src="images/Logo.png" id="logo" ng-click="goHome(yourdrunk)"></li>
               <form class="navbar-form navbar-left" role="search" ng-submit="search(searchTerm)" > 
                   <div class="input-group add-on">
-                    <input type="text" class="form-control" placeholder="Search" ng-model="searchTerm" id="searchbar">
+                    
+                    <div ng-class="open ? 'btn-group open' : 'btn-group'"  ng-click="openAuto();$event.stopPropagation()">
+                      <input type="text" ng-change="newInput(searchTerm)" class="form-control" placeholder="Search" ng-model="searchTerm" id="searchbar">
+                      
+                      <ul class="dropdown-menu" id="tableCellMiniDiv" ng-show="searchTerm" role="menu">
+                        <li ng-repeat="topic in autoResult">
+                          <p class="lead">{{topic.name}}</p>
+                        </li>
+                      </ul>
+                    </div>
                     <div class="input-group-btn">
                       <button class="btn btn-default" id="searchBtn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                   </div>
               </form>
               <li ng-class="{ activeTab: isActive('/playlist')}"><a ui-sref="playlist"><p id="navLink">My playlists</p></a></li>
-              <li ng-class="{ activeTab: isActive('/submit')}"><a ui-sref="submit"><p id="navLink">Submit</p></a></li>
+              <li ng-class="{ activeTab: isActive('/topic')}"><a ui-sref="topic"><p id="navLink">My topics</p></a></li>
+              <!-- <li ng-class="{ activeTab: isActive('/submit')}"><a ui-sref="submit"><p id="navLink">Submit</p></a></li> -->
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
