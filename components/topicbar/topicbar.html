@@ -1,11 +1,45 @@
+<div ng-show="topic.name">
 
-<div class="jumbotron" id="topicbar">
-<h2 id="topicTitle">{{thisTopic.value.name}}</h2>
-<img id="topicImg" src="http://www.wjnlib.org/wp-content/uploads/2014/03/Math-for-Piano-Performance.jpg">
-<p id="bold" ng-click="showDescription = !showDescription">Description</p>
-<div ng-show="showDescription">
-	<p>Mathematics is the study of topics such as quantity (numbers), structure, space, and change. There is a range of views among mathematicians and philosophers as to the exact scope and definition of mathematics.</p>
+	<div class="jumbotron" id="topicbar">
+	
+	<img id="topicImg" src="http://www.wjnlib.org/wp-content/uploads/2014/03/Math-for-Piano-Performance.jpg">
+	<p class="greyFontMd" id="topicTitle">{{topic.name}}</p>
+	<accordion close-others="oneAtATime">
+	    <accordion-group heading="Description" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+	    	<p>Mathematics is the study of topics such as quantity (numbers), structure, space, and change. There is a range of views among mathematicians and philosophers as to the exact scope and definition of mathematics.</p>
+	    </accordion-group>
+	    <accordion-group heading="Playlists">
+	    	<table class="table table-hover ">
+	    	    <thead>
+	    	    </thead>
+	    	    <tbody>
+	    	      <tr ng-repeat="list in lists">
+	    	        <td ng-class="{ selectedElement: isActiveList(list.id, $index)}" ng-click="openPlaylist(list)">
+	    	          <p class="lead">{{list.name}}</p>
+	    	        </td>
+	    	      </tr>
+	    	    </tbody>
+	    	  </table>
+	    </accordion-group>
+	    <accordion-group heading="Subtopics">
+	      <p>The body of the accordion group grows to fit the contents</p>
+	    </accordion-group>
+	  </accordion>
+	</div>
 </div>
-<p id="bold">Playlists</p>
-<p id="bold">Subtopics</p>
+<div ng-show="!topic.name && lists.length > 0">
+	<div class="jumbotron" id="topicbar">
+	<h2 id="topicTitle">Playlists</h2>
+	<table class="table table-hover ">
+	    <thead>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="list in lists">
+	        <td ng-class="{ selectedElement: isActiveList(list.id, $index)}" ng-click="openPlaylist(list)">
+	          <p class="lead">{{list.name}}</p>
+	        </td>
+	      </tr>
+	    </tbody>
+	</table>
+	</div>
 </div>

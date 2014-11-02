@@ -1,26 +1,37 @@
-<div id="background">
-<div id="loginHeader">
-	<p class="leadText" style="color: orange; display:inline;padding:30px;"><img style="width: 40px;" src="images/Logo.png">Corsane</p>
+    <div id="topPadding"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="jumbotron" id="loginBox">
+            <div style="text-align: center;">
+                <ul class="list-inline">
+                    <li>
+                        <p ng-class="isRegister ? 'leadText':'leadTextSelected';" ng-click="isRegister = false">log in</p>
+                    </li>
+                    <li>
+                        <p ng-class="isRegister ? 'leadTextSelected':'leadText';" ng-click="isRegister = true">sign up</p>
+                    </li>
+                </ul>
+            </div>
 
-	<p class="leadText" ng-click="isCollapsed = !isCollapsed" style="color: orange; display:inline; float:right; padding:30px;margin-bottom:0px;cursor:pointer;">log in</p>
-	<p class="leadText" ng-click="isCollapsed = !isCollapsed" style="color: orange; display:inline; float:right; padding:30px;margin-bottom:0px;cursor:pointer;">sign up</p>
 
-</div>
-<div collapse="isCollapsed" >
+        <div data-ng-if="isRegister">
+            <form ng-submit="register($parent.registerCredentials)" class="simple-form">
+                <input class="form-control" type="text" data-ng-model="$parent.registerCredentials.username" placeholder="Username" >
+                <input class="form-control" type="text" data-ng-model="$parent.registerCredentials.email" placeholder="Email" >
+                <input class="form-control pure-input-1-3" style="margin-top: 20px;margin-bottom: 20px;" type="password" data-ng-model="$parent.registerCredentials.password" placeholder="Password">
+                <button class="btn btn-success" type="submit">Register</button>
+            </form>
+        </div>
+        <div data-ng-if="!isRegister">
+            <form ng-submit="login($parent.loginCredentials)" class="simple-form">
+                <input class="form-control" type="text" data-ng-model="$parent.loginCredentials.username" placeholder="Username" >
+                <input class="form-control pure-input-1-3" style="margin-top: 20px;margin-bottom: 20px;" type="password" data-ng-model="$parent.loginCredentials.password" placeholder="Password">
+                <button class="btn btn-success" type="submit">Login</button>
+            </form>
+        </div>
 
-	<div style="background-color: grey;height:300px;" class="col-md-3"></div>
-	<div style="background-color: grey;" class="col-md-6">
-
-		<div style="height:300px;"> 
-			<p style="color: white; padding-top: 30px;">Login to Corsane</p>
-			<form ng-submit="login()">
-				<input class="form-control" type="text" ng-model="username" placeholder="Username" >
-				<input class="pure-input-1-3" style="margin-top: 20px;margin-bottom: 20px;" type="password" ng-model="token" placeholder="Password">
-				<button class="btn btn-success" type="submit">Login</button>
-			</form>
-		</div>
-	</div>
-	<div style="background-color: grey;height:300px;" class="col-md-3"></div>
-</div>
-
-</div>
+        <pre>{{registerCredentials | json }}</pre>
+        <pre>{{loginCredentials | json}}</pre>
+    </div>
+    </div>
+    <div class="col-md-3"></div>

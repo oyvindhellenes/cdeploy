@@ -12,7 +12,7 @@
   <div class="col-xs-6">
     <div id="topPadding">
 
-      <h1 class="playlistTitle">{{listElements.name}}</h1>
+      <h1 class="greyFontLg" id="leadResourceText">{{listElements.name}}</h1>
       <hr>
       <addresource ng-show="!showSubmit.value && listElements"></addresource>
 <!--       <addsection elements="listElements.elements"></addsection>
@@ -23,7 +23,7 @@
     </div>
     <div ng-if="isPlaylist.value">
       <div ng-repeat="element in listElements.elements" class="elementRepeater">
-        <resource element="element" elements="listElements.elements" id="element{{$index}}" class="resource"><resource>
+        <resource element="element" elements="listElements.elements" index="$index" id="element{{$index}}" class="resource"><resource>
       </div>
     </div>
   </div>
