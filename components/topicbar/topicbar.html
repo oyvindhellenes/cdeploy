@@ -1,12 +1,12 @@
 <div ng-show="topic.name">
 
 	<div class="jumbotron" id="topicbar">
-	
-	<img id="topicImg" src="http://www.wjnlib.org/wp-content/uploads/2014/03/Math-for-Piano-Performance.jpg">
-	<p class="greyFontMd" id="topicTitle">{{topic.name}}</p>
+	<p class="greyFontMd" ng-show="!topic.main_image.url">{{topic.name}}</p>
+	<img id="topicImg" ng-show="topic.main_image.url" src="{{topic.main_image.url}}">
+	<p class="greyFontMd" ng-show="topic.main_image.url" id="topicTitle">{{topic.name}}</p>
 	<accordion close-others="oneAtATime">
-	    <accordion-group heading="Description" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-	    	<p>Mathematics is the study of topics such as quantity (numbers), structure, space, and change. There is a range of views among mathematicians and philosophers as to the exact scope and definition of mathematics.</p>
+	    <accordion-group heading="Description" is-open="status.isFirstOpen">
+	    	<p>{{topic.description}}</p>
 	    </accordion-group>
 	    <accordion-group heading="Playlists">
 	    	<table class="table table-hover ">
@@ -27,19 +27,33 @@
 	  </accordion>
 	</div>
 </div>
-<div ng-show="!topic.name && lists.length > 0">
-	<div class="jumbotron" id="topicbar">
-	<h2 id="topicTitle">Playlists</h2>
-	<table class="table table-hover ">
-	    <thead>
-	    </thead>
-	    <tbody>
-	      <tr ng-repeat="list in lists">
-	        <td ng-class="{ selectedElement: isActiveList(list.id, $index)}" ng-click="openPlaylist(list)">
-	          <p class="lead">{{list.name}}</p>
-	        </td>
-	      </tr>
-	    </tbody>
-	</table>
+<div ng-show="!topic.name">
+	<div class="jumbotron" id="topicbar2">
+	<p class="greyFontMd">No topic found for <strong>"{{thisSearch}}"</strong>. Want to make one?</p>
+	<div ng-show="!showTopicForm">
+	  <button class="btn btn-default" ng-click="showTopicForm = !showTopicForm;"><span class="glyphicon glyphicon-plus"></span> Create New Topics</button>
+	</div>
+	<div ng-show="showTopicForm">
+	  <form ng-submit="createNewTopic()">
+	    <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="{{thisSearch}}" ng-model="topicName">
+	    <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="Input" ng-model="topicDescription">
+	    <button type="submit" class="btn btn-success">Create new topic</button>
+	  </form>
+	</div>
+	<div ng-show="lists.length > 0">
+
+		<p class="greyFontLg">Playlists</p>
+		<table class="table table-hover ">
+		    <thead>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="list in lists">
+		        <td ng-class="{ selectedElement: isActiveList(list.id, $index)}" ng-click="openPlaylist(list)">
+		          <p class="lead">{{list.name}}</p>
+		        </td>
+		      </tr>
+		    </tbody>
+		</table>
+	</div>
 	</div>
 </div>

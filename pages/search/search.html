@@ -15,6 +15,12 @@
             <label class="btn btn-primary" ng-model="search.type" btn-radio="'more'"><span class="glyphicon glyphicon-record" id="more"></span> More</label>
           </div>
       </div>
+      <h1 class="greyFontLg" id="leadResourceText">{{searchRes.topic.name}}</h1>
+      <hr ng-show="searchRes.topic">
+      <addresource ng-show="!showSubmit.value"></addresource>
+      <div ng-show="showSubmit.value">
+        <submit elements="searchRes.value" topic="searchRes.topic"></submit>
+      </div>
       <div ng-repeat="element in searchRes.value">
         <resource element="element" id="element{{$index}}"><resource>
       </div>
