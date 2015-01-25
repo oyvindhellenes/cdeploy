@@ -1,15 +1,10 @@
 <div class="playlistbar" ng-controller="MyContentCtrl" > 
 
-  <div class="col-xs-3">
-    <div id="rightBar" ng-show="shortPath == '/playlist'">
-        <myplaylists></myplaylists>
-    </div>
-    <div id="rightBar" ng-show="shortPath == '/topic'">
-        <mytopics></mytopics>    
-    </div>
+  <div class="col-md-3">
+      <myplaylists></myplaylists>
     
   </div>
-  <div class="col-xs-6">
+  <div class="col-md-6">
     <div id="topPadding">
 
       <h1 class="greyFontLg" id="leadResourceText">{{listElements.name}}</h1>
@@ -17,17 +12,42 @@
       <addresource ng-show="!showSubmit.value && listElements"></addresource>
 <!--       <addsection elements="listElements.elements"></addsection>
  -->
+      <modal name="'Change order'" ng-show="listElements.numberOfElements" title="listElements.name" style="'btn btn-defult'">
+        <div >
+          <ul ui-sortable ng-model="listElements.elements">
+            <li ng-repeat="e in listElements.elements">
+              <p class="lead">{{e.name}}</p>
+            </li>
+          </ul>
+<!--           <table class="table table-hover table-striped">
+              <thead>
+              </thead>
+              <tbody>
+                <tr ng-repeat="e in listElements.elements" ui-sortable ng-model="listElements.elements">
+                  <td ng-class="{ selectedElement: isActiveList(list.id, $index)}">
+                    <p class="lead">{{e.name}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table> -->
+            <button type="btn-default" ng-click="saveOrder(listElements.elements)">Save</button>
+        </div>
+      </modal>
       <div ng-show="showSubmit.value">
         <submit elements="listElements.elements"></submit>
       </div>
     </div>
     <div ng-if="isPlaylist.value">
       <div ng-repeat="element in listElements.elements" class="elementRepeater">
+        <div>
         <resource element="element" elements="listElements.elements" index="$index" id="element{{$index}}" class="resource"><resource>
+        </div>
+        <div class="spacing">
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-xs-3">
+  <div class="col-md-3">
     <div id="topPadding" ng-show="shortPath == '/topic'">
     <topicbar></topicbar>
     </div>

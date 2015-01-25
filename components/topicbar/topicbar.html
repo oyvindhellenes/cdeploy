@@ -4,12 +4,35 @@
 	<p class="greyFontMd" ng-show="!topic.main_image.url">{{topic.name}}</p>
 	<img id="topicImg" ng-show="topic.main_image.url" src="{{topic.main_image.url}}">
 	<p class="greyFontMd" ng-show="topic.main_image.url" id="topicTitle">{{topic.name}}</p>
+	<div ng-if="!topic.main_image.url">
+		<modal name="'Add a picture'" style="'addNewBtn'" ng-if="!topic.description" modid="'1'">
+		</modal>
+	</div>
+	<div id="description">
+		<p ng-if="topic.description">{{topic.description}}</p>
+		<modal name="'Add a description'" style="'addNewBtn'" ng-if="!topic.description" modid="'2'">
+			<p>Funker det ikke?</p>
+			<input type="textarea" model="">
+			<button type="btn-default" ng-click="">OK</button>
+		</modal>
+
+	</div>
 	<accordion close-others="oneAtATime">
-	    <accordion-group heading="Description" is-open="status.isFirstOpen">
-	    	<p>{{topic.description}}</p>
-	    </accordion-group>
-	    <accordion-group heading="Playlists">
-	    	<table class="table table-hover ">
+	    <accordion-group heading="Playlists" is-open="status.isFirstOpen">
+	    	<modal name="'Add a Playlist'" style="'addNewBtn'" title="'My Playlists'" modid="'3'">
+	    		<table class="table table-hover table-striped">
+	    		    <thead>
+	    		    </thead>
+	    		    <tbody>
+	    		      <tr ng-repeat="list in mylists.value">
+	    		        <td ng-class="{ selectedElement: isActiveList(list.id, $index)}" ng-click="addPlaylist(list, topic)">
+	    		          <p class="lead">{{list.name}}</p>
+	    		        </td>
+	    		      </tr>
+	    		    </tbody>
+	    		  </table>
+	    	</modal>
+	    	<table class="table table-hover table-striped">
 	    	    <thead>
 	    	    </thead>
 	    	    <tbody>
@@ -30,16 +53,7 @@
 <div ng-show="!topic.name">
 	<div class="jumbotron" id="topicbar2">
 	<p class="greyFontMd">No topic found for <strong>"{{thisSearch}}"</strong>. Want to make one?</p>
-	<div ng-show="!showTopicForm">
-	  <button class="btn btn-default" ng-click="showTopicForm = !showTopicForm;"><span class="glyphicon glyphicon-plus"></span> Create New Topics</button>
-	</div>
-	<div ng-show="showTopicForm">
-	  <form ng-submit="createNewTopic()">
-	    <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="{{thisSearch}}" ng-model="topicName">
-	    <input type="text" ng-click="$event.stopPropagation()" class="form-control" placeholder="Input" ng-model="topicDescription">
-	    <button type="submit" class="btn btn-success">Create new topic</button>
-	  </form>
-	</div>
+	<addtopic></addtopic>
 	<div ng-show="lists.length > 0">
 
 		<p class="greyFontLg">Playlists</p>

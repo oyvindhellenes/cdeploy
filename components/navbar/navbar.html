@@ -3,7 +3,8 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav" id="centerNav">
             
-            <li><img src="images/Logo.png" id="logo" ng-click="goHome(yourdrunk)"></li>
+            <li><img src="images/Logo.png" id="logo" ng-click="goHome(yourdrunk)">
+            </li>
               <form class="navbar-form navbar-left" role="search" ng-submit="search(searchTerm)" ng-keyup="switchTopic($event.keyCode)"> 
                   <div class="input-group add-on">
 
@@ -30,13 +31,14 @@
                     </div>
                   </div>
               </form>
-              <li ng-class="{ activeTab: isActive('/playlist')}"><a ui-sref="playlist"><p id="navLink">My playlists</p></a></li>
-              <!-- <li ng-class="{ activeTab: isActive('/topic')}"><a ui-sref="topic"><p id="navLink">My topics</p></a></li> -->
-              <!-- <li ng-class="{ activeTab: isActive('/submit')}"><a ui-sref="submit"><p id="navLink">Submit</p></a></li> -->
+
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a ui-sref="login"><p id="navLink">Login</p></a></li>
+          <li>
+            <a ui-sref="login" ng-if="!user.userinfo.username"><p id="navLink" >Login</p></a>
+            <a ui-sref="profile" ng-if="user.userinfo.username"><p id="navLink">Welcome {{user.userinfo.username}}!</p></a>
+          </li>
         </ul>
 
         </div>

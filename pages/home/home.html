@@ -1,12 +1,51 @@
 <div class="col-md-3">
+  <myplaylists ></myplaylists>
 </div>
 <div class="col-md-6">
   <div id="topPadding"></div>
-  <div class="jumbotron" id="homeInfoBox">
-    <p class="leadText">Welcome to Corsane</p>
-    <p>Start your learning experience by searching for something you want to learn or creating a playlist!</p>
-  </div>
+
+    <div class="col-md-6">
+        <h1 class="greyFontLg" id="leadResourceText">Selected topic pages</h1>
+        <br>
+        <br>
+        <div >
+            <table class="table table-hover table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="topic in topics | limitTo:5">
+                    <td ng-class="{ selectedElement: isActiveList(list.id, $index)}" ng-click="search(topic.topic_id, 'true')">
+                      <!-- <img id="topicImg" ng-show="topic.main_image.url" src="{{topic.main_image.url}}">  --> 
+                      <a href=""><p class="lead">{{topic.name}}</p><p class="greyFontSm">by Øyvind Hellenes</p></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <h1 class="greyFontLg" id="leadResourceText">Selected playlists</h1>
+        <br>
+        <br>
+        <div>
+            <table class="table table-hover table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="list in lists.value | limitTo:5">
+                    <td ng-class="{ selectedElement: isActiveList(list.id, $index)}">
+                      <a ui-sref="playlist.id({id:{{list.id}}})"><p class="lead">{{list.name}}</p><p class="greyFontSm">by {{list.poster.username}}</p></a>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
 </div>
 <div class="col-md-3"></div>
+
 
 
